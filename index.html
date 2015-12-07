@@ -1,64 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app="myApp">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Angular Scheduling</title>
-
-    <!-- CSS -->
-    <!-- load Bootstrap and custom style.css -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.3.0/journal/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-
-    <!-- JS -->
-    <!-- load Angular, Firebase, Firebase Angular Library, and custom app.js -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.0/angular.min.js"></script>
-    <script src="https://cdn.firebase.com/js/client/1.1.1/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.8.0/angularfire.min.js"></script>
-    <script src="app.js"></script>
+  <script data-require="angular.js@*" data-semver="1.3.0-beta.5" src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
 </head>
+
 <body>
-<div class="container" ng-app="scheduleApp" ng-controller="mainController">
-  
-  <div class="page-header text-center">       
-    <h1>Student Database</h1>        
-  </div>
+  <h1> Student Database </h1>
+  <div ng-app="myApp" ng-controller="MyCtrl">
+    [<span ng-repeat="input in students">""</span>]:
+    [<span ng-repeat="input in grades">""</span>]
+    
+    <div ng-repeat="input in grades">    
+        Grades:<input type="text" ng-model="input.grades" />
+        <button ng-click="removeInput($index)">Remove</button>
+    </div>
+    <div ng-repeat="input in students">
+        Students:<input type="text" ng-model="input.students" />
+        <button ng-click="removeInput($index)">Remove</button>
+    </div>
 
-  <!-- were doing one day with 1 time slot for simplicity -->
-  <!-- we'll use angular's ng-repeat in a bit to get the other days and times -->
-  <div class="row times">
-
-    <div class="col-xs-4 text-center">
-              
-      <h3>
-        <span ng-hide="editing">
-        {{name}} 
-          <button ng-click="editing = true">Edit</button>
-        </span>
-        <span ng-show="editing">
-          <input type="text" ng-model="name"> 
-          <button ng-click="editing = false">Save</button>
-        </span>
-      </h3>
-      
-      <div class="time-slot">       
-        <input type="textbox" id="grade-1">
-        <label for="monday-time"><span ng-hide="editing">
-        {{grades}} 
-          <button ng-click="editing = true">Edit</button>
-        </span>
-        <span ng-show="editing">
-          <input type="text" ng-model="grades"> 
-          <button ng-click="editing = false">Save</button>
-        </span></label>
-      </div>
-    </div>    
-
-  </div>
-
-  <p class="text-center">    
-    <a href="#" class="btn btn-primary" ng-click="reset()">Reset</a>
-  </p>
-
-</div>  
+    <button ng-click="addInput()">add input</button>
+    Average: {{grades.length}}
+<div ng-repeat="input in grades">
+    {{input.grades}}
+</div>
+</div>
+<button type='submit' ng-submit="submitTable()">Submit</button>
 </body>
+</html>
+
+<html>
+<div ng-app>
+    <div ng-controller="GradeDatabase">
+            <br />
+      <table border="1">
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Score</td>
+                        <td>Remove Item</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="item in items">
+            <td>{{item.Name}}</td>
+            <td>{{item.Score}}</td>
+            <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <div>Average: {{averageScore()}} </div>
+      <div>{{maxScore}}</div>
+      <div> </div>
+      <br />
+      <table>
+        <tr>
+          <td>Name: </td>
+          <td><input type="text" ng-model="item.Name" /></td>
+        </tr>
+        <tr>
+          <td>Score: </td>
+          <td><input type="number" ng-model="item.Score" /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="Button" value="Add" ng-click="addItem(item)" /> </td>
+          
+        </tr>
+      </table>
+    </div>
+  </div>
 </html>
