@@ -48,15 +48,15 @@
         <tbody>
           <tr ng-repeat="item in items">
             <td>{{item.Name}}</td>
-            <td>{{item.Score}}</td>
+            <td ng-style="customStyle.style">{{item.Score}}</td>
             <td><input type="button" value="Remove" ng-click="removeItem($index)" /></td>
           </tr>
         </tbody>
       </table>
       <br />
       <div>Average: {{averageScore()}} </div>
-      <div>{{maxScore}}</div>
-      <div> </div>
+      <div>"Min using Math.min "</div>
+      <div> "Max using Math.max "</div>
       <br />
       <table>
         <tr>
@@ -65,7 +65,7 @@
         </tr>
         <tr>
           <td>Score: </td>
-          <td><input type="number" ng-model="item.Score" /></td>
+          <td><input type="number" ng-model="item.Score" id="score" /></td>
         </tr>
         <tr>
           <td colspan="2"><input type="Button" value="Add" ng-click="addItem(item)" /> </td>

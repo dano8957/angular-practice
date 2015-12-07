@@ -31,24 +31,27 @@ $scope.removeInput = function(index){
 }]);
 
 function GradeDatabase($scope)  {
-		$scope.items =[];
+	$scope.items =[];
 
-		$scope.addItem = function(item) {
-			$scope.items.push(item);
-			$scope.item = {};
-		};
+	$scope.addItem = function(item) {
+		$scope.items.push(item);
+		$scope.item = {};
+	};
     
-		$scope.averageScore = function(){
-			var total = 0;
-			for(count=0;count<$scope.items.length;count++){
-				total +=$scope.items[count].Score;
-			}
-			return total/count;
-		};
+	$scope.averageScore = function(){	
+		var total = 0;
+		for(count=0;count<$scope.items.length;count++){
+			total +=$scope.items[count].Score;
+		}
+		return total/count;
+	};
 		
-		$scope.removeItem = function(index){
-			$scope.items.splice(index,1);
-		};
+	$scope.removeItem = function(index){
+		$scope.items.splice(index,1);
+	};
 
-		
+	// var max = Math.max.apply(null, numbers);  This about equal to Math.max(numbers[0], ...)
+ //                                            or Math.max(5, 6, ...) 
+	// var min = Math.min.apply(null, numbers);
+
 }
